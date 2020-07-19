@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:focusableInTouchMode="true"
+    tools:context=".ListActivity">
+
+    <!-- レシピ名-->
+    <TextView
+        android:id="@+id/text_Name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_recipe_name_label"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint=""
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_Name" />
+
+    <!-- タグ-->
+    <TextView
+        android:id="@+id/text_Tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_recipe_tag_label"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_Name" />
+
+    <EditText
+        android:id="@+id/edit_Tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint=""
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_Tag" />
+
+    <!-- 何人前か-->
+    <TextView
+        android:id="@+id/text_Serve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_recipe_serve_label"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_Tag" />
+
+    <EditText
+        android:id="@+id/edit_Serve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint=""
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_Serve" />
+
+    <!-- 材料-->
+    <TextView
+        android:id="@+id/text_Ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_recipe_ingredients_label"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_Serve" />
+
+    <EditText
+        android:id="@+id/edit_Ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint=""
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_Ingredients" />
+
+
+    <!-- 作り方-->
+    <TextView
+        android:id="@+id/text_Instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_recipe_instructions_label"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_Ingredients" />
+
+    <EditText
+        android:id="@+id/edit_Instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint=""
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_Instructions" />
+
+    <Button
+        android:id="@+id/update_Button"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/edit_recipe_update_button_label"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_Instructions" />
+
+    <Button
+        android:id="@+id/back_Button"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/edit_recipe_back_button_label"
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@id/update_Button"
+        app:layout_constraintTop_toTopOf="@id/update_Button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

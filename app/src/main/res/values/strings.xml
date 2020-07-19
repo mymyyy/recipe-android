@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Recipe</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_recipe_name_label">レシピ名</string>
+    <string name="edit_recipe_tag_label">タグ</string>
+    <string name="edit_recipe_serve_label">人前</string>
+    <string name="edit_recipe_ingredients_label">材料</string>
+    <string name="edit_recipe_instructions_label">作り方</string>
+
+    <string name="edit_recipe_update_button_label">更新</string>
+    <string name="edit_recipe_add_button_label">更新</string>
+    <string name="edit_recipe_back_button_label">戻る</string>
+</resources>
