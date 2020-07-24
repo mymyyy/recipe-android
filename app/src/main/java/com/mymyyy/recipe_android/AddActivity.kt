@@ -29,23 +29,23 @@ class AddActivity : AppCompatActivity() {
         val addButton = findViewById<Button>(R.id.update_Button)
 
         addButton.setOnClickListener {
-            var msg: String
+            val msg: String
 
             when {
                 name.text.toString() == "" -> {
-                    msg = "レシピ名を入力してください"
+                    msg = getString(R.string.validate_name_message)
                 }
                 tag.text.toString() == "" -> {
-                    msg = "タグを入力してください"
+                    msg = getString(R.string.validate_tag_message)
                 }
                 serve.text.toString() == "" -> {
-                    msg = "何人前のレシピか入力してください"
+                    msg = getString(R.string.validate_serve_message)
                 }
                 ingredients.text.toString() == "" -> {
-                    msg = "材料を入力してください"
+                    msg = getString(R.string.validate_ingredients_message)
                 }
                 instructions.text.toString() == "" -> {
-                    msg = "作り方を入力してください"
+                    msg = getString(R.string.validate_instructions_message)
                 }
                 else -> {
                     val recipe = RecipeEntity(
@@ -66,8 +66,7 @@ class AddActivity : AppCompatActivity() {
                     ingredients.text = ""
                     instructions.text = ""
 
-
-                    msg = "レシピが登録されました"
+                    msg = getString(R.string.add_message)
                 }
             }
             Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()

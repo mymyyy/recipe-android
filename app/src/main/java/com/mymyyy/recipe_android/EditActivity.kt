@@ -38,19 +38,19 @@ class EditActivity : AppCompatActivity() {
 
                 when {
                     name.text.toString() == "" -> {
-                        msg = "レシピ名を入力してください"
+                        msg = getString(R.string.validate_name_message)
                     }
                     tag.text.toString() == "" -> {
-                        msg = "タグを入力してください"
+                        msg = getString(R.string.validate_tag_message)
                     }
                     serve.text.toString() == "" -> {
-                        msg = "何人前のレシピか入力してください"
+                        msg = getString(R.string.validate_serve_message)
                     }
                     ingredients.text.toString() == "" -> {
-                        msg = "材料を入力してください"
+                        msg = getString(R.string.validate_ingredients_message)
                     }
                     instructions.text.toString() == "" -> {
-                        msg = "作り方を入力してください"
+                        msg = getString(R.string.validate_instructions_message)
                     }
                     else -> {
                         val updateRecipe = RecipeEntity(
@@ -64,7 +64,7 @@ class EditActivity : AppCompatActivity() {
 
                         itemRepository.updateRecipeById(updateId, updateRecipe) {
                         }
-                        msg = "レシピを更新しました"
+                        msg = getString(R.string.update_message)
                     }
                 }
                 Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()

@@ -10,4 +10,13 @@
     <string name="edit_recipe_update_button_label">更新</string>
     <string name="edit_recipe_add_button_label">更新</string>
     <string name="edit_recipe_back_button_label">戻る</string>
+
+    <string name="update_message">レシピを更新しました</string>
+    <string name="add_message">レシピを登録しました</string>
+
+    <string name="validate_name_message">レシピ名を入力してください</string>
+    <string name="validate_tag_message">タグを入力してください</string>
+    <string name="validate_serve_message">何人前のレシピか入力してください</string>
+    <string name="validate_ingredients_message">材料を入力してください</string>
+    <string name="validate_instructions_message">作り方を入力してください</string>
 </resources>
