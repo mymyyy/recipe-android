@@ -1,12 +1,16 @@
 package com.mymyyy.recipe_android
 
-import ItemRepository
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class AddActivity : AppCompatActivity() {
 
@@ -14,10 +18,17 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        // リポジトリ取得
+        val okHttpClient = OkHttpClient.Builder().build()
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://www.mymyyy.com/recipe/")
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .client(okHttpClient)
+                .build()
+        val itemRepository = ItemRepository(retrofit)
+
         findViewById<TextView>(R.id.update_Button).text = getString(R.string.edit_recipe_add_button_label)
-
-        val itemRepository = ItemRepository()
-
         val name = findViewById<TextView>(R.id.edit_Name)
         val tag = findViewById<TextView>(R.id.edit_Tag)
         val serve = findViewById<TextView>(R.id.edit_Serve)

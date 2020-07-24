@@ -1,29 +1,13 @@
-import com.mymyyy.recipe_android.RecipeEntity
-import com.mymyyy.recipe_android.RecipeService
-import com.squareup.moshi.KotlinJsonAdapterFactory
-import com.squareup.moshi.Moshi
-import okhttp3.OkHttpClient
+package com.mymyyy.recipe_android
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
-class ItemRepository {
+class ItemRepository(retrofit: Retrofit) {
 
-    private var recipeService: RecipeService
-
-    init {
-        val okHttpClient = OkHttpClient.Builder().build()
-        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://www.mymyyy.com/recipe/")
-                .addConverterFactory(MoshiConverterFactory.create(moshi))
-                .client(okHttpClient)
-                .build()
-
-        recipeService = retrofit.create(RecipeService::class.java)
-    }
+    private val recipeService: RecipeService = retrofit.create(RecipeService::class.java)
 
     fun getRecipeList(callback: (List<RecipeEntity>) -> Unit) {
         recipeService.getRecipe().enqueue(object : Callback<List<RecipeEntity>> {
