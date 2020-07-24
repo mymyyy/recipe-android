@@ -21,11 +21,7 @@ class ListActivity : AppCompatActivity() {
         val itemRepository = ItemRepository()
         val listView = findViewById<ListView>(R.id.recipe_List)
         itemRepository.getRecipeList { recipeList ->
-            val recipeListDisplay = arrayListOf<String>()
-
-            for (recipe in recipeList) {
-                recipeListDisplay.add(recipe.name)
-            }
+            val recipeListDisplay = recipeList.map { recipe -> recipe.name }
 
             val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipeListDisplay)
             listView.adapter = adapter
