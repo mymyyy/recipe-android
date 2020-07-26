@@ -3,19 +3,17 @@ package com.mymyyy.recipe_android
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
+import kotlinx.android.synthetic.main.activity_list.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 class ListActivity : AppCompatActivity() {
 
-    //　ViewBinding を使うと findViewById をなくせるよ
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
@@ -30,22 +28,24 @@ class ListActivity : AppCompatActivity() {
                 .build()
         val itemRepository = ItemRepository(retrofit)
 
-        // レシピ一覧を取得してlistViewにセット
-        val listView = findViewById<ListView>(R.id.recipe_List)
+        // レシピ一覧を取得してrecyclerViewにセット
         itemRepository.getRecipeList { recipeList ->
             val recipeListDisplay = recipeList.map { recipe -> recipe.name }
 
-            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipeListDisplay)
-            listView.adapter = adapter
+            val recipeAdapter = RecipeAdapter(recipeListDisplay)
+            val viewManager = LinearLayoutManager(this)
 
-            // 遷移
-            listView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            recipe_recycler_view.layoutManager = viewManager
+            recipe_recycler_view.adapter = recipeAdapter
+            recipe_recycler_view.setHasFixedSize(true)
 
-                //val jsonData = Json.stringify(recipe)
-                val intent = Intent(this@ListActivity, EditActivity::class.java)
-                intent.putExtra("id", recipeList[position].id)
-                startActivity(intent)
-            }
+            recipeAdapter.setOnItemClickListener(object : RecipeAdapter.OnItemClickListener {
+                override fun onItemClickListener(view: View, position: Int, clickedText: String) {
+                    val intent = Intent(this@ListActivity, EditActivity::class.java)
+                    intent.putExtra("id", recipeList[position].id)
+                    startActivity(intent)
+                }
+            })
         }
 
         // 新規登録ボタン押下時

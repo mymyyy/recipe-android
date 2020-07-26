@@ -67,7 +67,6 @@ class AddActivity : AppCompatActivity() {
                             ingredients.text.toString(),
                             instructions.text.toString())
 
-
                     itemRepository.addRecipe(recipe) {
                     }
 

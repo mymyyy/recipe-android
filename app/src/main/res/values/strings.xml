@@ -19,4 +19,6 @@
     <string name="validate_serve_message">何人前のレシピか入力してください</string>
     <string name="validate_ingredients_message">材料を入力してください</string>
     <string name="validate_instructions_message">作り方を入力してください</string>
+    <string name="textview">TextView</string>
+
 </resources>
