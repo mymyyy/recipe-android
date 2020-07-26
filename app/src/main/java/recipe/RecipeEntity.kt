@@ -1,4 +1,4 @@
-package com.mymyyy.recipe_android
+package recipe
 
 data class RecipeEntity(
         val id: String,

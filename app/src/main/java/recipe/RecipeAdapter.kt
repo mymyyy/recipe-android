@@ -1,9 +1,10 @@
-package com.mymyyy.recipe_android
+package recipe
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mymyyy.recipe_android.R
 import kotlinx.android.synthetic.main.recyclerview_recipe.view.*
 
 class RecipeAdapter(private val recipeList: List<String>) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {

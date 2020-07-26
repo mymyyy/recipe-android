@@ -1,4 +1,4 @@
-package com.mymyyy.recipe_android
+package recipe
 
 import retrofit2.Call
 import retrofit2.Callback

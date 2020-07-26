@@ -2,21 +2,25 @@ package com.mymyyy.recipe_android
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.mymyyy.recipe_android.databinding.ActivityEditBinding
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
+import recipe.RecipeEntity
+import recipe.RecipeRepository
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 class EditActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityEditBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit)
+        binding = ActivityEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // リポジトリ取得
         val okHttpClient = OkHttpClient.Builder().build()
@@ -28,23 +32,25 @@ class EditActivity : AppCompatActivity() {
                 .build()
         val itemRepository = RecipeRepository(retrofit)
 
-        findViewById<TextView>(R.id.update_Button).text = getString(R.string.edit_recipe_update_button_label)
+
+        binding.updateButton.text = getString(R.string.edit_recipe_update_button_label)
 
         val updateId = intent.getStringExtra("id").toString()
         itemRepository.getRecipeById(updateId) { recipe ->
-            val name = findViewById<TextView>(R.id.edit_Name)
-            name.text = recipe.name
-            val tag = findViewById<TextView>(R.id.edit_Tag)
-            tag.text = recipe.tag
-            val serve = findViewById<TextView>(R.id.edit_Serve)
-            serve.text = recipe.serve
-            val ingredients = findViewById<TextView>(R.id.edit_Ingredients)
-            ingredients.text = recipe.ingredients
-            val instructions = findViewById<TextView>(R.id.edit_Instructions)
-            instructions.text = recipe.instructions
+            val name = binding.editName
+            val tag = binding.editTag
+            val serve = binding.editServe
+            val ingredients = binding.editIngredients
+            val instructions = binding.editInstructions
+
+            name.setText(recipe.name)
+            tag.setText(recipe.tag)
+            serve.setText(recipe.serve)
+            ingredients.setText(recipe.ingredients)
+            instructions.setText(recipe.instructions)
 
             // 更新ボタン押下時
-            val updateButton = findViewById<Button>(R.id.update_Button)
+            val updateButton = binding.updateButton
             updateButton.setOnClickListener {
                 val msg: String
 
@@ -81,13 +87,13 @@ class EditActivity : AppCompatActivity() {
                 }
                 Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
             }
+        }
 
-            // 戻るボタン押下時
-            val backButton = findViewById<Button>(R.id.back_Button)
-            backButton.setOnClickListener {
-                val intent = Intent(this@EditActivity, ListActivity::class.java)
-                startActivity(intent)
-            }
+        // 戻るボタン押下時
+        val backButton = binding.backButton
+        backButton.setOnClickListener {
+            val intent = Intent(this@EditActivity, ListActivity::class.java)
+            startActivity(intent)
         }
     }
 }

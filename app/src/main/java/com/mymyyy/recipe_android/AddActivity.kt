@@ -2,21 +2,25 @@ package com.mymyyy.recipe_android
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.mymyyy.recipe_android.databinding.ActivityEditBinding
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
+import recipe.RecipeEntity
+import recipe.RecipeRepository
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 class AddActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityEditBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit)
+        binding = ActivityEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // リポジトリ取得
         val okHttpClient = OkHttpClient.Builder().build()
@@ -28,17 +32,15 @@ class AddActivity : AppCompatActivity() {
                 .build()
         val itemRepository = RecipeRepository(retrofit)
 
-        findViewById<TextView>(R.id.update_Button).text = getString(R.string.edit_recipe_add_button_label)
-        val name = findViewById<TextView>(R.id.edit_Name)
-        val tag = findViewById<TextView>(R.id.edit_Tag)
-        val serve = findViewById<TextView>(R.id.edit_Serve)
-        val ingredients = findViewById<TextView>(R.id.edit_Ingredients)
-        val instructions = findViewById<TextView>(R.id.edit_Instructions)
+        val addButton = binding.updateButton
+        addButton.text = getString(R.string.edit_recipe_add_button_label)
+        val name = binding.editName
+        val tag = binding.editTag
+        val serve = binding.editServe
+        val ingredients = binding.editIngredients
+        val instructions = binding.editInstructions
 
         // 登録ボタン押下時
-
-        val addButton = findViewById<Button>(R.id.update_Button)
-
         addButton.setOnClickListener {
             val msg: String
 
@@ -70,11 +72,11 @@ class AddActivity : AppCompatActivity() {
                     itemRepository.addRecipe(recipe) {
                     }
 
-                    name.text = ""
-                    tag.text = ""
-                    serve.text = ""
-                    ingredients.text = ""
-                    instructions.text = ""
+                    name.text.clear()
+                    tag.text.clear()
+                    serve.text.clear()
+                    ingredients.text.clear()
+                    instructions.text.clear()
 
                     msg = getString(R.string.add_message)
                 }
@@ -83,7 +85,7 @@ class AddActivity : AppCompatActivity() {
         }
 
         // 戻るボタン押下時
-        val backButton = findViewById<Button>(R.id.back_Button)
+        val backButton = binding.backButton
         backButton.setOnClickListener {
             val intent = Intent(this@AddActivity, ListActivity::class.java)
             startActivity(intent)
