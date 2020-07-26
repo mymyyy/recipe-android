@@ -26,7 +26,7 @@ class EditActivity : AppCompatActivity() {
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(okHttpClient)
                 .build()
-        val itemRepository = ItemRepository(retrofit)
+        val itemRepository = RecipeRepository(retrofit)
 
         findViewById<TextView>(R.id.update_Button).text = getString(R.string.edit_recipe_update_button_label)
 

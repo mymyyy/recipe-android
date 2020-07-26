@@ -26,7 +26,7 @@ class ListActivity : AppCompatActivity() {
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(okHttpClient)
                 .build()
-        val itemRepository = ItemRepository(retrofit)
+        val itemRepository = RecipeRepository(retrofit)
 
         // レシピ一覧を取得してrecyclerViewにセット
         itemRepository.getRecipeList { recipeList ->
